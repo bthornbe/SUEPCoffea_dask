@@ -299,6 +299,13 @@ class SUEP_cluster(processor.ProcessorABC):
             out_mult["SUEP_mult_aplan"] =  1.5 * mult_eigs[:,0]
             out_mult["SUEP_mult_FW2M"] = 1.0 - 3.0 * (mult_eigs[:,2]*mult_eigs[:,1] + mult_eigs[:,0]*mult_eigs[:,2] + mult_eigs[:,1]*mult_eigs[:,0])
             out_mult["SUEP_mult_D"] = 27.0 * mult_eigs[:,2]*mult_eigs[:,1]*mult_eigs[:,0]
+        # sphericity tensor variables with r=1:
+        mult_eigs_1 = self.sphericity(chonkiest_cands,1.0)  
+        out_mult["SUEP_mult_spher_1"] = 1.5 * (mult_eigs_1[:,1]+mult_eigs_1[:,0])
+        out_mult["SUEP_mult_aplan_1"] =  1.5 * mult_eigs_1[:,0]
+        out_mult["SUEP_mult_FW2M_1"] = 1.0 - 3.0 * (mult_eigs_1[:,2]*mult_eigs_1[:,1] + mult_eigs_1[:,0]*mult_eigs_1[:,2] + mult_eigs_1[:,1]*mult_eigs_1[:,0])
+        out_mult["SUEP_mult_D_1"] = 27.0 * mult_eigs_1[:,2]*mult_eigs_1[:,1]*mult_eigs_1[:,0]
+        out_mult["SUEP_mult_C_1"] = 3.0 * (mult_eigs_1[:,0]*mult_eigs_1[:,1] + mult_eigs_1[:,0]*mult_eigs_1[:,2] + mult_eigs_1[:,1]*mult_eigs_1[:,2])
 
 
         ### SUEP_pt
@@ -370,6 +377,14 @@ class SUEP_cluster(processor.ProcessorABC):
             out_ch["SUEP_ch_dphi_chcands_ISR"] = ak.mean(abs(Christos_cands.deltaphi(ISR_cand_b)), axis=-1)
             out_ch["SUEP_ch_dphi_ISRtracks_ISR"] = ak.mean(abs(ISR_cand_tracks.boost_p4(boost_ch).deltaphi(ISR_cand_b)), axis=-1)
             out_ch["SUEP_ch_dphi_SUEPtracks_ISR"] = ak.mean(abs(SUEP_cand_tracks.boost_p4(boost_ch).deltaphi(ISR_cand_b)), axis=-1)    
+            
+            # sphericity tensor variables with r=1:
+            ch_eigs_1 = self.sphericity(Christos_cands,1.0)
+            out_ch["SUEP_ch_spher_1"] = 1.5 * (ch_eigs_1[:,1]+ch_eigs_1[:,0])
+            out_ch["SUEP_ch_aplan_1"] = 1.5 * ch_eigs_1[:,0]
+            out_ch["SUEP_ch_FW2M_1"] = 1.0 - 3.0 * (ch_eigs_1[:,2]*ch_eigs_1[:,1] + ch_eigs_1[:,2]*ch_eigs_1[:,0] + ch_eigs_1[:,1]*ch_eigs_1[:,0])
+            out_ch["SUEP_ch_D_1"] = 27.0 * ch_eigs_1[:,2]*ch_eigs_1[:,1]*ch_eigs_1[:,0]
+            out_ch["SUEP_ch_C_1"] = 3.0 * (ch_eigs_1[:,0]*ch_eigs_1[:,1] + ch_eigs_1[:,0]*ch_eigs_1[:,2] + ch_eigs_1[:,1]*ch_eigs_1[:,2])
 
             # unboost for these
             Christos_cands_ub = Christos_cands.boost_p4(SUEP_cand)

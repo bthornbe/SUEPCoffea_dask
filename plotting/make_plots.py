@@ -64,6 +64,14 @@ def create_output_file(l):
             "SUEP_"+label+"_rho0" : Hist.new.Reg(100, 0, 20, name="rho0_"+label, label=r"$\rho_0$").Weight(),
             "SUEP_"+label+"_rho1" : Hist.new.Reg(100, 0, 20, name="rho1_"+label, label=r"$\rho_1$").Weight(),
 
+            # r=1 sphericity tensor variables
+            "SUEP_"+label+"_spher_1" : Hist.new.Reg(100, 0, 1, name="spher_1_"+label, label="sphericity_1").Weight(),
+            "SUEP_"+label+"_aplan_1" : Hist.new.Reg(100, 0, 1, name="aplan_1_"+label, label="Aplanarity_1").Weight(),
+            "SUEP_"+label+"_FW2M_1" : Hist.new.Reg(100, 0, 1, name="FW2M_1_"+label, label="2nd Fox Wolfram Moment_1").Weight(),
+            "SUEP_"+label+"_D_1" : Hist.new.Reg(100, 0, 1, name="D_1_"+label, label="D_1").Weight(),
+            "SUEP_"+label+"_C_1" : Hist.new.Reg(100, 0, 1, name="C_1_"+label, label="C_1").Weight(),
+
+
             # new hists
             "A_"+label: Hist.new.Reg(nbins, 0, 1, name="A_"+label).Weight(),
             "B_"+label: Hist.new.Reg(nbins, 0, 1, name="B_"+label).Weight(),

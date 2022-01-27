@@ -29,7 +29,7 @@ def main():
     home_base  = os.environ['HOME']
     username = os.environ['USER']
     proxy_copy = os.path.join(home_base,proxy_base)
-    out_dir = "/mnt/T3_US_MIT/hadoop/scratch/" + username  + "/SUEP/" + options.tag + "/{}/"
+    out_dir = '/eos/user/b/' + username  + "/SUEP/" + options.tag + "/{}/"
     out_dir_xrd = "/scratch/" + username  + "/SUEP/" + options.tag + "/{}/"
     out_dir_c = "/work/submit/" + username + "/SUEP/" + options.tag + "/{}/"
     

@@ -26,7 +26,7 @@ voms-proxy-info --all
 echo $_CONDOR_SCRATCH_DIR
 cd   $_CONDOR_SCRATCH_DIR
 
-export X509_USER_PROXY=/afs/cern.ch/user/c/cfreer/{proxy}
+export X509_USER_PROXY=/afs/cern.ch/user/b/bthornbe/{proxy}
 pwd
 voms-proxy-info --all
 
@@ -82,7 +82,7 @@ def main():
     home_base  = os.environ['HOME']
     proxy_copy = os.path.join(home_base,proxy_base)
     username = getpass.getuser()
-    outdir = '/eos/cms/store/user/' + username + '/SUEP/{tag}/{sample}/'
+    outdir = '/eos/user/b/' + username + '/SUEP/{tag}/{sample}/'
 
 
     regenerate_proxy = False
@@ -129,7 +129,7 @@ def main():
             
             if not options.submit:
                 # ---- getting the list of file for the dataset (For Kraken these are stored in catalogues on T2)
-                input_list = "/afs/cern.ch/user/c/cfreer/Rawfiles_A01/{}/RawFiles.00".format(sample_name)
+                input_list = "/afs/cern.ch/user/b/bthornbe/private/Ben/{}/RawFiles.00".format(sample_name)
                 Raw_list = open(input_list, "r")
                 with open(os.path.join(jobs_dir, "inputfiles.dat"), 'w') as infiles:
                      for i in Raw_list:
@@ -140,9 +140,9 @@ def main():
  
             eosoutdir =  outdir.format(tag=options.tag,sample=sample_name)
             # crete a directory on eos
-            if '/eos/cms' in eosoutdir:
-                eosoutdir = eosoutdir.replace('/eos/cms', 'root://eoscms.cern.ch/')
-                os.system("eos mkdir -p {}".format(eosoutdir.replace('root://eoscms.cern.ch/','')))
+            if '/eos/user' in eosoutdir:
+                #eosoutdir = eosoutdir.replace('/eos/cms', 'root://eosuser.cern.ch/')
+                os.system("mkdir -p eosoutdir")#.format(eosoutdir.replace('root://eosuser.cern.ch/','')))
             else:
                 raise NameError(eosoutdir)
 
