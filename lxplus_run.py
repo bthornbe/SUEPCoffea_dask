@@ -142,7 +142,10 @@ def main():
             # crete a directory on eos
             if '/eos/user' in eosoutdir:
                 #eosoutdir = eosoutdir.replace('/eos/cms', 'root://eosuser.cern.ch/')
-                os.system("mkdir -p eosoutdir")#.format(eosoutdir.replace('root://eosuser.cern.ch/','')))
+                print("test")
+                #os.system("mkdir -p eosoutdir")#.format(eosoutdir.replace('root://eosuser.cern.ch/','')))
+                os.makedirs(eosoutdir)
+                print("eosoutdir", eosoutdir)#debugging
             else:
                 raise NameError(eosoutdir)
 
