@@ -41,7 +41,8 @@ rm $1.root
 #echo "----- transferring output to scratch :"
 echo "xrdcp condor_out.hdf5 root://t3serv017.mit.edu/{outdir}/$3.hdf5"
 #xrdcp condor_out.hdf5 root://t3serv017.mit.edu/{outdir}/$3.hdf5
-xrdcp condor_out.hdf5 {outdir}/$3.hdf5
+#xrdcp condor_out.hdf5 {outdir}/$3.hdf5
+gfal-copy condor_out.hdf5 gsiftp://eosuserftp.cern.ch/{outdir}/$3.hdf5
 
 echo " ------ THE END (everyone dies !) ----- "
 """
