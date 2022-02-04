@@ -39,10 +39,11 @@ python3 condor_SUEP_WS.py --jobNum=$1 --isMC={ismc} --era={era} --dataset={datas
 rm $1.root
 
 #echo "----- transferring output to scratch :"
-echo "xrdcp condor_out.hdf5 root://t3serv017.mit.edu/{outdir}/$3.hdf5"
+#echo "xrdcp condor_out.hdf5 root://t3serv017.mit.edu/{outdir}/$3.hdf5"
 #xrdcp condor_out.hdf5 root://t3serv017.mit.edu/{outdir}/$3.hdf5
-#xrdcp condor_out.hdf5 {outdir}/$3.hdf5
-gfal-copy condor_out.hdf5 gsiftp://eosuserftp.cern.ch/{outdir}/$3.hdf5
+echo "xrdcp --nopbar -d 2 condor_out.hdf5 {outdir}/$3.hdf5"
+xrdcp --nopbar -d 2 condor_out.hdf5 {outdir}/$3.hdf5
+#gfal-copy condor_out.hdf5 gsiftp://eosuserftp.cern.ch/{outdir}/$3.hdf5
 
 echo " ------ THE END (everyone dies !) ----- "
 """
